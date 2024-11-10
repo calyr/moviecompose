@@ -2,24 +2,23 @@ package com.calyr.movieapp.viewmodel
 
 import android.content.Context
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.calyr.data.MovieRepository
 import com.calyr.domain.Movie
+import com.calyr.movieapp.util.hasInternet
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
 class MovieViewModel @Inject constructor(
-    private val movieRepository: MovieRepository
+    private val movieRepository: MovieRepository,
+    private val context: Context
 ) : ViewModel() {
     sealed class MovieState {
         object Loading : MovieState()
@@ -37,7 +36,7 @@ class MovieViewModel @Inject constructor(
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val movies = movieRepository.obtainMovies()
+                val movies = movieRepository.obtainMovies(hasInternet = hasInternet(context) )
                 withContext(Dispatchers.Main) {
                     _state.value = MovieState.Successful(list = movies)
                 }
@@ -51,3 +50,4 @@ class MovieViewModel @Inject constructor(
         }
     }
 }
+

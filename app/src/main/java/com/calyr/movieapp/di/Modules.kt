@@ -1,5 +1,6 @@
 package com.calyr.movieapp.di
 
+import android.app.Application
 import android.content.Context
 import com.calyr.data.MovieRepository
 import com.calyr.framework.local.LocalDataSource
@@ -32,6 +33,11 @@ object AppModules {
         retrofit: RetrofitBuilder
     ) : RemoteDataSource {
         return RemoteDataSource(retrofit = retrofit)
+    }
+
+    @Provides
+    fun provideContext(application: Application) : Context {
+        return application.applicationContext
     }
 
     @Provides

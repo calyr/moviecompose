@@ -7,25 +7,28 @@ class MovieRepository(
     val localDataSource: ILocalDataSource
 ) {
 
-    suspend fun obtainMovies(): List<Movie> {
+    suspend fun obtainMovies(hasInternet: Boolean): List<Movie> {
 
-        //consultar al servicio web
-        val moviesRemote = remoteDataSource.fetchData()
+        if(hasInternet) {
+            //consultar al servicio web
+            val moviesRemote = remoteDataSource.fetchData()
 
-        //Verificar el estado final del consumo de API
-        when( moviesRemote) {
-            is NetworkResult.Success -> {
-                //eliminamos los datos de la base de datos
-                localDataSource.deleteAll()
-                //Actualizar la base de datos
-                localDataSource.insertMovies(
-                    moviesRemote.data
-                )
-            }
-            is NetworkResult.Error -> {
-                //Registrar un log en Sentry
+            //Verificar el estado final del consumo de API
+            when( moviesRemote) {
+                is NetworkResult.Success -> {
+                    //eliminamos los datos de la base de datos
+                    localDataSource.deleteAll()
+                    //Actualizar la base de datos
+                    localDataSource.insertMovies(
+                        moviesRemote.data
+                    )
+                }
+                is NetworkResult.Error -> {
+                    //Registrar un log en Sentry
+                }
             }
         }
+
 
         val moviesLocal = localDataSource.getList()
         when(moviesLocal) {
