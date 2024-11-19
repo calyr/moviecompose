@@ -77,6 +77,9 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":framework"))
 
+    //google map
+    implementation(libs.google.map)
+
 }
 
 kapt {
