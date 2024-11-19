@@ -113,7 +113,7 @@ fun MovieDetailScreenContent(modifier: Modifier, movieId: String) {
         Text(text = movieUI.description)
         IconButton(
             onClick = {
-                showNotification(context)
+                showNotification(context, movieUI)
             }
         ) {
             Icon(

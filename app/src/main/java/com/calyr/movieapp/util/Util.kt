@@ -2,12 +2,17 @@ package com.calyr.movieapp.util
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.media.RingtoneManager
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.calyr.domain.Movie
+import com.calyr.movieapp.MainActivity
 
 fun hasInternet(context: Context): Boolean {
     // register activity with the connectivity manager service
@@ -53,7 +58,14 @@ fun hasInternet(context: Context): Boolean {
     }
 }
 
-fun showNotification(context: Context) {
+fun showNotification(context: Context, movie: Movie) {
+
+    val intent = Intent(context, MainActivity::class.java)
+    val pendingIntent = PendingIntent.getActivity(
+        context, 0, intent, PendingIntent.FLAG_IMMUTABLE
+    )
+
+    val sonido = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
     // Create NotificationChannel for Android 8.0+ (API 26+)
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
         val channel = NotificationChannel(
@@ -70,11 +82,13 @@ fun showNotification(context: Context) {
 
     // Create the notification
     val notification = NotificationCompat.Builder(context, "default_channel")
-        .setContentTitle("New Notification")
-        .setContentText("This is a simple notification with an icon.")
+        .setContentTitle(movie.title)
+        .setContentText(movie.description)
         .setSmallIcon(android.R.drawable.ic_dialog_info) // Set your icon here
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         .setAutoCancel(true) // Automatically dismiss after user taps
+        .setSound(sonido)
+        .setContentIntent(pendingIntent)
         .build()
 
     // Show the notification
