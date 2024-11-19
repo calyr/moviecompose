@@ -23,6 +23,8 @@ hilt = "2.52"
 hiltNavigation = "1.2.0"
 coil = "2.7.0"
 googleMaps = "4.4.1"
+googleGmsGoogleServices = "4.4.2"
+firebaseMessaging = "24.1.0"
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -72,6 +74,7 @@ coil = { group = "io.coil-kt", name="coil-compose", version.ref="coil"}
 
 #
 google-map = { group="com.google.maps.android", name="maps-compose", version.ref="googleMaps"}
+firebase-messaging = { group = "com.google.firebase", name = "firebase-messaging", version.ref = "firebaseMessaging" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -84,6 +87,7 @@ ksp = { id = "com.google.devtools.ksp", version.ref="ksp"}
 #hilt
 hilt = {id="com.google.dagger.hilt.android", version.ref="hilt"}
 kapt = {id="org.jetbrains.kotlin.kapt", version.ref="kotlin"}
+google-gms-google-services = { id = "com.google.gms.google-services", version.ref = "googleGmsGoogleServices" }
 
 [bundles]
 networking = [ "retrofit", "retrofit-serialization", "kotlinx-serialization-json", "okhttp3"]
