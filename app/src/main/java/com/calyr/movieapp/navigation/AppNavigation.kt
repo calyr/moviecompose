@@ -18,7 +18,7 @@ fun AppNavigation() {
 
     NavHost(
         navController = navController,
-        startDestination = Screens.CinemaMapScreen.route//Screens.MoviesScreen.route
+        startDestination = Screens.MoviesScreen.route
     ) {
         composable(Screens.MoviesScreen.route) {
             val movieViewModel : MovieViewModel = hiltViewModel()
