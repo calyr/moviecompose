@@ -26,9 +26,18 @@ googleMaps = "4.4.1"
 googleGmsGoogleServices = "4.4.2"
 firebaseMessaging = "24.1.0"
 firebaseDatabase = "21.0.0"
+jupiter = "5.11.3"
+mockito = "5.14.2"
+testCoroutines = "1.9.0"
+
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+junit-jupiter = { group = 'org.junit.jupiter', name = 'junit-jupiter-api', version.ref = 'jupiter' }
+mockito = {group = 'org.mockito', name = 'mockito-core', version.ref= 'mockito' }
+test-coroutines = { group = 'org.jetbrains.kotlinx', name = 'kotlinx-coroutines-test', version.ref = 'testCoroutines' }
+
+
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
