@@ -13,7 +13,19 @@
         </DropdownSelection>
         <DialogSelection />
       </SelectionState>
-      <SelectionState runConfigName="ExampleInstrumentedTest">
+      <SelectionState runConfigName="useAppContext()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="promotion_composable_test()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="PromotionScreenTest">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="promotionScreen_displayCorrectTitleWithoutSetTag()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
+      <SelectionState runConfigName="promotionScreen_dispalyCorrectTitle()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
